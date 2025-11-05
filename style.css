@@ -89,15 +89,13 @@ main {
     width: 100%;
 }
 
-/* --- PERUBAHAN BESAR DIMULAI DI SINI --- */
-
-/* (1) Container .pie-chart-container tetap sama */
+/* Container .pie-chart-container */
 .chart-box.pie-chart-container {
     display: flex;
     flex-direction: column;
 }
 
-/* (2) BARU: Atur pembungkus konten (chart + legenda) */
+/* Atur pembungkus konten (chart + legenda) */
 .pie-chart-content {
     display: flex;
     flex-direction: row; /* Berdampingan kiri-kanan */
@@ -107,7 +105,7 @@ main {
     width: 100%;
 }
 
-/* (3) DIUBAH: Wrapper Pie Chart */
+/* Wrapper Pie Chart */
 .pie-chart-wrapper {
     width: 250px;       /* Ukuran chart */
     height: 250px;
@@ -116,7 +114,7 @@ main {
     margin: 0;          /* Hapus margin auto */
 }
 
-/* (4) DIUBAH: Legenda Kustom */
+/* Legenda Kustom */
 .chart-legend {
     flex-grow: 1;         /* Ambil sisa ruang di kanan */
     height: 100%;         /* Penuhi tinggi container */
@@ -129,7 +127,6 @@ main {
     padding: 0 0 0 15px;  /* Beri padding di kiri */
 }
 
-/* (5) Sisa style legenda tetap sama */
 .chart-legend ul {
     list-style: none;
     padding: 0;
@@ -138,8 +135,8 @@ main {
 }
 
 .chart-legend li {
-    /* display: flex; */
-    /* justify-content: space-between; */
+    /* display: flex; Hapus */
+    /* justify-content: space-between; Hapus */
     padding: 4px 10px;
     border-radius: 4px;
 }
@@ -151,8 +148,6 @@ main {
 .chart-legend li strong {
     color: #005a9c;
 }
-
-/* --- AKHIR PERUBAHAN BESAR --- */
 
 
 /* Kontainer Tabel */
@@ -263,11 +258,12 @@ tbody tr:hover {
     }
     
     .chart-box {
-         height: 380px;
-         /* Ubah tinggi di HP agar muat */
+         /* === PERBAIKAN DI SINI === */
+         height: auto; /* Ubah dari 380px menjadi auto */
+         /* ========================= */
     }
 
-    /* BARU: Di HP, buat chart dan legenda kembali menumpuk */
+    /* Di HP, buat chart dan legenda kembali menumpuk */
     .pie-chart-content {
         flex-direction: column;
         height: auto;
@@ -285,7 +281,7 @@ tbody tr:hover {
         border-left: none;
         padding: 10px 0 0 0;
         margin-top: 10px;
-        flex-grow: 0; /* Jangan memanjang */
+        flex-grow: 0;
     }
 
     th, td {
