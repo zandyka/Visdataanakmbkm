@@ -89,26 +89,47 @@ main {
     width: 100%;
 }
 
+/* --- PERUBAHAN BESAR DIMULAI DI SINI --- */
+
+/* (1) Container .pie-chart-container tetap sama */
 .chart-box.pie-chart-container {
     display: flex;
     flex-direction: column;
 }
 
+/* (2) BARU: Atur pembungkus konten (chart + legenda) */
+.pie-chart-content {
+    display: flex;
+    flex-direction: row; /* Berdampingan kiri-kanan */
+    align-items: center;  /* Rata tengah secara vertikal */
+    gap: 15px;            /* Jarak antara chart dan legenda */
+    height: 280px;        /* Isi sisa ruang di bawah judul */
+    width: 100%;
+}
+
+/* (3) DIUBAH: Wrapper Pie Chart */
 .pie-chart-wrapper {
-    width: 250px;
+    width: 250px;       /* Ukuran chart */
     height: 250px;
-    margin: 0 auto; 
     position: relative;
-    flex-shrink: 0;
+    flex-shrink: 0;     /* Jangan biarkan chart menciut */
+    margin: 0;          /* Hapus margin auto */
 }
 
+/* (4) DIUBAH: Legenda Kustom */
 .chart-legend {
-    padding: 10px 0 0 0;
-    margin-top: 10px;
-    border-top: 1px solid #eee;
-    overflow-y: auto;
+    flex-grow: 1;         /* Ambil sisa ruang di kanan */
+    height: 100%;         /* Penuhi tinggi container */
+    overflow-y: auto;     /* Scroll di sini jika legenda panjang */
+    
+    border-top: none;     /* Hapus border atas */
+    border-left: 1px solid #eee; /* Ganti jadi border kiri */
+    
+    margin-top: 0;        /* Hapus margin atas */
+    padding: 0 0 0 15px;  /* Beri padding di kiri */
 }
 
+/* (5) Sisa style legenda tetap sama */
 .chart-legend ul {
     list-style: none;
     padding: 0;
@@ -117,8 +138,8 @@ main {
 }
 
 .chart-legend li {
-    display: flex;
-    justify-content: space-between;
+    /* display: flex; */
+    /* justify-content: space-between; */
     padding: 4px 10px;
     border-radius: 4px;
 }
@@ -130,6 +151,9 @@ main {
 .chart-legend li strong {
     color: #005a9c;
 }
+
+/* --- AKHIR PERUBAHAN BESAR --- */
+
 
 /* Kontainer Tabel */
 .data-table-container {
@@ -155,7 +179,7 @@ th, td {
     padding: 12px 15px;
     border: 1px solid #e0e0e0;
     text-align: left;
-    max-width: 200px; 
+    max-width: 150px; 
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -169,7 +193,7 @@ thead {
 }
 
 thead th {
-    max-width: 170px;
+    max-width: 120px;
     position: relative;
 }
 
@@ -215,55 +239,56 @@ tbody tr:hover {
     padding: 50px;
 }
 
-
 /* ========================================= */
 /* ===    TAMPILAN RESPONSIVE (HP)     === */
 /* ========================================= */
-
-/* Terapkan gaya ini jika lebar layar 768px atau kurang */
 @media (max-width: 768px) {
-
-    /* Kurangi padding utama di HP */
     body {
         padding: 10px;
     }
     
-    /* Kecilkan sedikit judul utama */
     h1 {
         font-size: 1.7em;
-        /* Pastikan logo dan teks muat jika nama panjang */
         flex-wrap: wrap; 
     }
 
-    /* * Buat filter controls jadi vertikal (menumpuk)
-     * persis seperti di gambar referensi Anda
-    */
     .controls {
         flex-direction: column;
         gap: 10px;
     }
     
+    .charts-container {
+        flex-direction: column;
+        gap: 15px;
+    }
     
-    /* * Beri chart box ketinggian yang sedikit lebih
-     * besar di HP agar legenda muat
-    */
     .chart-box {
          height: 380px;
+         /* Ubah tinggi di HP agar muat */
     }
 
-    /* * Buat wrapper pie chart sedikit lebih besar 
-     * agar pas di layar HP
-    */
+    /* BARU: Di HP, buat chart dan legenda kembali menumpuk */
+    .pie-chart-content {
+        flex-direction: column;
+        height: auto;
+    }
+    
     .pie-chart-wrapper {
         width: 280px; 
         height: 280px;
     }
+    
+    /* Kembalikan border legenda seperti semula di HP */
+    .chart-legend {
+        width: 100%;
+        border-top: 1px solid #eee;
+        border-left: none;
+        padding: 10px 0 0 0;
+        margin-top: 10px;
+        flex-grow: 0; /* Jangan memanjang */
+    }
 
-    /* * Kurangi padding di sel tabel agar lebih banyak
-     * data muat di layar sebelum perlu scroll
-    */
     th, td {
         padding: 10px 8px;
     }
 }
-
