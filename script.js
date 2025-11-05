@@ -260,8 +260,7 @@ function renderCustomLegend(gradeCounts) {
         const count = gradeCounts[grade];
         const li = document.createElement('li');
         li.innerHTML = `
-            <span><strong>Grade ${grade}</strong></span>
-            <span>${count} orang</span>
+        <strong>Grade ${grade}:</strong> ${count} orang
         `;
         ul.appendChild(li);
     }
